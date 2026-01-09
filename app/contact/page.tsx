@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Navigation from '../../components/Navigation'
 
 export default function Contact() {
+  const [isHovered, setIsHovered] = useState(false)
   return (
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', color: '#000' }}>
       <div className="grain-overlay" style={{ opacity: 0.02 }} />
@@ -41,15 +43,19 @@ export default function Contact() {
             Studio Enquiries
           </p>
           <a 
-            href="mailto:studio@chelseyartwork.com"
+            href="mailto:studio@chelseyartwork.com?subject=Studio%20Enquiry"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{ 
               fontFamily: '"Times New Roman", Times, serif',
               fontSize: 'clamp(18px, 4vw, 32px)',
-              color: '#000',
+              color: isHovered ? '#666' : '#000',
               textDecoration: 'none',
-              borderBottom: '1px solid #000',
+              borderBottom: isHovered ? '2px solid #666' : '1px solid #000',
               paddingBottom: '5px',
-              wordBreak: 'break-all'
+              wordBreak: 'break-all',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
             }}
           >
             studio@chelseyartwork.com
