@@ -57,10 +57,9 @@ export default function Portfolio() {
                 opacity: hoveredId && hoveredId !== artwork.id ? 0.5 : 1
               }}
             >
-              {/* Artwork Image Container - Fixed Aspect Ratio for Uniform Size */}
+              {/* Artwork Image Container - Natural Aspect Ratio */}
               <div style={{ 
                 width: '100%',
-                aspectRatio: '4/3',
                 backgroundColor: '#fafafa', 
                 marginBottom: '24px', 
                 overflow: 'hidden',
@@ -70,16 +69,11 @@ export default function Portfolio() {
                   alt={artwork.title}
                   style={{ 
                     width: '100%', 
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
+                    height: 'auto',
                     display: 'block',
                     imageRendering: '-webkit-optimize-contrast',
                     transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-                    // Scale Hero.png more to eliminate internal white borders
-                    transform: artwork.image.includes('Hero.png')
-                      ? (hoveredId === artwork.id ? 'scale(1.45)' : 'scale(1.40)')
-                      : (hoveredId === artwork.id ? 'scale(1.03)' : 'scale(1)')
+                    transform: hoveredId === artwork.id ? 'scale(1.02)' : 'scale(1)'
                   }}
                 />
               </div>
