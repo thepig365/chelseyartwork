@@ -52,7 +52,7 @@ export const artworks: Artwork[] = [
     year: '2024',
     medium: 'Mixed media on canvas',
     size: 'Inquire for details',
-    image: '/images/artworks/5 Seeking in the wilderness—Masada.jpg',
+    image: '/images/artworks/5 Seeking in the wilderness.jpg',
     series: '2024',
   },
   {
@@ -106,7 +106,7 @@ export const artworks: Artwork[] = [
     year: '2024',
     medium: 'Mixed media on canvas',
     size: 'Inquire for details',
-    image: '/images/artworks/11 WINTER，From wintry hardship comes the plum blossom\'s scent.jpg',
+    image: '/images/artworks/11 WINTER.jpg',
     series: '2024',
   },
   {
@@ -196,7 +196,7 @@ export const artworks: Artwork[] = [
     year: 'Archive',
     medium: 'Mixed media on canvas',
     size: 'Inquire for details',
-    image: '/images/artworks/21 The Brain\'s Response.jpg',
+    image: '/images/artworks/21 The Brains Response.jpg',
     series: 'Archive',
   },
   {
