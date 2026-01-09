@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/bio/page": "app/bio/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/exhibitions/page": "app/exhibitions/page.js",
+  "/page": "app/page.js",
+  "/selected-works/[slug]/page": "app/selected-works/[slug]/page.js",
+  "/selected-works/page": "app/selected-works/page.js",
+  "/studio/page": "app/studio/page.js",
+  "/texts/page": "app/texts/page.js"
+}

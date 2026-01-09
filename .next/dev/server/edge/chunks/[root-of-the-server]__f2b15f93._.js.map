@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/middleware.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server'\n\nexport function middleware(request: NextRequest) {\n  // Protect /private route\n  if (request.nextUrl.pathname.startsWith('/private')) {\n    const password = request.cookies.get('private_view_auth')?.value\n\n    // If not authenticated, redirect to password gate\n    if (!password) {\n      return NextResponse.redirect(new URL('/private/gate', request.url))\n    }\n  }\n\n  return NextResponse.next()\n}\n\nexport const config = {\n  matcher: ['/private/:path*'],\n}\n"],"names":[],"mappings":";;;;;;AAAA;AAAA;;AAEO,SAAS,WAAW,OAAoB;IAC7C,yBAAyB;IACzB,IAAI,QAAQ,OAAO,CAAC,QAAQ,CAAC,UAAU,CAAC,aAAa;QACnD,MAAM,WAAW,QAAQ,OAAO,CAAC,GAAG,CAAC,sBAAsB;QAE3D,kDAAkD;QAClD,IAAI,CAAC,UAAU;YACb,OAAO,gMAAY,CAAC,QAAQ,CAAC,IAAI,IAAI,iBAAiB,QAAQ,GAAG;QACnE;IACF;IAEA,OAAO,gMAAY,CAAC,IAAI;AAC1B;AAEO,MAAM,SAAS;IACpB,SAAS;QAAC;KAAkB;AAC9B"}}]
+}
