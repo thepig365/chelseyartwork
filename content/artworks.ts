@@ -106,7 +106,7 @@ export const artworks: Artwork[] = [
     year: '2024',
     medium: 'Mixed media on canvas',
     size: 'Inquire for details',
-    image: '/images/artworks/11 WINTER.jpg',
+    image: '/images/artworks/11 winter.jpg',
     series: '2024',
   },
   {
@@ -196,7 +196,7 @@ export const artworks: Artwork[] = [
     year: 'Archive',
     medium: 'Mixed media on canvas',
     size: 'Inquire for details',
-    image: '/images/artworks/21 The Brains Response.jpg',
+    image: '/images/artworks/21 the brains response.jpg',
     series: 'Archive',
   },
   {
