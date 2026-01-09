@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface ArtworkModalProps {
   isOpen: boolean
@@ -16,6 +17,7 @@ interface ArtworkModalProps {
 }
 
 export default function ArtworkModal({ isOpen, onClose, artwork }: ArtworkModalProps) {
+  const router = useRouter()
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
   const [isPanning, setIsPanning] = useState(false)
@@ -248,6 +250,7 @@ export default function ArtworkModal({ isOpen, onClose, artwork }: ArtworkModalP
               e.currentTarget.style.backgroundColor = 'transparent'
               e.currentTarget.style.color = '#000'
             }}
+            onClick={() => router.push('/contact')}
             >
               Inquire
             </button>

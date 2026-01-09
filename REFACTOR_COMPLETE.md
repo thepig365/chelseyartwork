@@ -1,6 +1,7 @@
-# Chelsey Artwork — Digital Temple (Refactor Complete)
+# Chelsey L. Artwork — Gallery V2 (Production Ready)
 
-**Status**: ✅ Production Ready
+**Status**: ✅ Deployed on Vercel
+**Last Updated**: January 2025
 
 ---
 
@@ -8,94 +9,71 @@
 
 ### 1) Content Architecture
 ✅ **Single Source of Truth**: All data in `/content/` directory
-- `/content/artworks.ts` — artwork definitions (no hardcoded in pages)
-- `/content/studio.ts` — studio/process photos
-- `/content/texts.ts` — curatorial statement + publications
+- `/content/artworks.ts` — artwork definitions (19 paintings)
+- Artist info displayed via page components
 
 Pages import and render content—they don't contain it.
 
 ### 2) Routes & Navigation
-✅ **Exact Navigation Labels**:
+✅ **Navigation Labels**:
 ```
-HOME / SELECTED WORKS / IN THE STUDIO / TEXTS / PRESS / PRIVATE VIEW
+HOME / BIO / PORTFOLIO / EXHIBITIONS / CONTACT
 ```
 
 ✅ **Routes**:
-- `/` — HOME
-- `/selected-works` — SELECTED WORKS
-- `/studio` — IN THE STUDIO
-- `/texts` — TEXTS / PRESS
-- `/private` — PRIVATE VIEW (authenticated)
-- `/private/gate` — Password gate (middleware redirect)
-
-No other pages. No shop, about, contact.
+- `/` — HOME (hero image + artist name)
+- `/bio` — BIO (artist statement + academic recognition)
+- `/selected-works` — PORTFOLIO (artwork grid with modal)
+- `/exhibitions` — EXHIBITIONS (past + upcoming shows)
+- `/contact` — CONTACT (studio enquiries)
 
 ### 3) Image Structure
-✅ **Archival Hierarchy**: `/public/images/` with organized subfolders
+✅ **Organized Assets**: `/public/images/` with subfolders
 ```
 /public/images/
-├── hero/hero.jpg
-├── artworks/asemic-writing/, bio-abstract/, specters/, archive/
-├── studio/
-└── private/
+├── artworks/       (all artwork images)
+├── hero/           (homepage hero)
+└── studio/         (process photos)
 ```
 
-✅ **Naming Convention**: `YYYY_category_NN.jpg`
-- Example: `2024_asemic-writing_01.jpg`
-- Consistent, metadata-rich, not random
-
 ### 4) Home Page
-✅ **Minimal Spec Only**:
+✅ **Minimal Design**:
 - Fullscreen hero image (edge-to-edge)
-- Small artist name: \"Chelsey C.\"
-- Optional: Single-line upcoming note
-- **Nothing else** — no footer, no social links, no extra text
+- Artist name: "CHELSEY L."
+- Clean, archival aesthetic
+- **Nothing else** — no footer, no social links
 
-### 5) Selected Works
+### 5) Portfolio (Selected Works)
 ✅ **Deep Zoom Modal**:
 - Click artwork → modal opens
 - Scroll to zoom (up to 4x magnification)
 - Drag to pan when zoomed
 - ESC or click outside to close
+- **Inquire button** → redirects to Contact page
 
-✅ **Metadata Only**: Title / Year / Medium / Size
-- No descriptions
-- No prices
-- No \"Buy\" or \"Inquire\" buttons
+✅ **Metadata Display**: Title / Year / Medium / Size
 
-### 6) Private View (Server-Side Auth)
-✅ **Protected Route**:
-- Middleware checks for `private_view_auth` cookie
-- Unauthenticated users redirected to `/private/gate`
-- API validates password against `PRIVATE_VIEW_PASSWORD` env var
+### 6) Exhibitions Page
+✅ **Real Exhibition Entries**:
+- Echo and Resonance (Town Hall Gallery, Boroondara)
+- VAS Spring Select Exhibition 2025
+- VAS Winter Select Exhibition 2025
 
-✅ **Password Gate** (`/private/gate`):
-- Clean form
-- Submit validates via POST to `/api/private/auth`
-- On success: sets httpOnly cookie + redirects to `/private`
-- On fail: shows error, clears input
-
-✅ **Private Collection** (`/private`):
-- Only renders if cookie present
-- Shows private works grid
-- Logout button clears cookie + redirects to gate
-- Private images never exposed to unauthenticated clients
-
-### 7) Style (Cold, Minimal, Expensive)
+### 7) Style (Architectural Theme)
 ✅ **Typography**:
-- Small font sizes (xs, sm)
-- Light font-weight
-- Wide letter-spacing (tracking)
+- Courier New monospace font
+- Warm background (#F4F3F0)
+- Dark sidebar navigation (#1a1a1a)
 
-✅ **Whitespace**: Generous padding, minimal visual density
+✅ **Layout**:
+- Fixed 220px left sidebar (desktop)
+- Hamburger menu (mobile)
+- Responsive design with clamp() padding
 
-✅ **Interactions**: Opacity transitions only (no animations, no bounce)
-
-✅ **No Clutter**:
-- Zero social links
-- Zero prices
-- Zero shop buttons
-- Zero newsletter signup
+✅ **Mobile Responsive**:
+- Hamburger navigation menu
+- Stacked layouts for small screens
+- Touch-friendly interactions
 
 ---
 
@@ -109,43 +87,33 @@ npm run start    # Run production locally
 ```
 
 ### Add Artwork
-1. Save image: `/public/images/artworks/asemic-writing/2024_asemic-writing_03.jpg`
+1. Save image to `/public/images/artworks/`
 2. Edit `/content/artworks.ts` → add to array
 3. Refresh http://localhost:3000/selected-works
 
-### Add Studio Image
-1. Save image: `/public/images/studio/2024_process_texture_02.jpg`
-2. Edit `/content/studio.ts` → add to array
-3. Refresh http://localhost:3000/studio
+### Update Bio
+1. Edit `/app/bio/page.tsx`
+2. Modify text content as needed
 
-### Change Password
-1. Edit `.env.local` → `PRIVATE_VIEW_PASSWORD=newpassword`
-2. Restart dev server or next request picks it up
-3. Test at http://localhost:3000/private/gate
-
-### Update Curatorial Statement
-1. Edit `/content/texts.ts` → `curatoralStatement` string
-2. Refresh http://localhost:3000/texts
-
-See **IMAGE_PLACEMENT_GUIDE.md** for detailed step-by-step instructions.
+### Add Exhibition
+1. Edit `/app/exhibitions/page.tsx`
+2. Add entry to exhibitions array
 
 ---
 
 ## Verification Checklist
 
-- [x] All data in `/content/` (not in page.tsx)
-- [x] Routes exact: /, /selected-works, /studio, /texts, /private
-- [x] Nav labels exact: HOME / SELECTED WORKS / IN THE STUDIO / TEXTS / PRESS / PRIVATE VIEW
-- [x] Images in `/public/images/...` with archival naming
-- [x] HOME minimal: hero + name + upcoming only
-- [x] SELECTED WORKS: deep zoom modal + metadata only
-- [x] PRIVATE VIEW: server-side auth (middleware + API)
-- [x] Private images not visible until authenticated
-- [x] No social links, no prices, no shop anywhere
-- [x] Cold, minimal aesthetic (small type, whitespace, opacity transitions)
-- [x] `.env.local` has `PRIVATE_VIEW_PASSWORD`
+- [x] All artwork data in `/content/artworks.ts`
+- [x] Routes: /, /bio, /selected-works, /exhibitions, /contact
+- [x] Nav labels: HOME / BIO / PORTFOLIO / EXHIBITIONS / CONTACT
+- [x] Images in `/public/images/artworks/`
+- [x] HOME minimal: hero + artist name only
+- [x] PORTFOLIO: deep zoom modal with Inquire → Contact
+- [x] Mobile responsive (hamburger menu)
+- [x] Architectural theme (Courier New, warm bg)
+- [x] No social links, no prices anywhere
 - [x] Build passes: `npm run build` ✓
-- [x] Dev server runs: `npm run dev` ✓
+- [x] Deployed to Vercel ✓
 
 ---
 
@@ -154,126 +122,68 @@ See **IMAGE_PLACEMENT_GUIDE.md** for detailed step-by-step instructions.
 ```
 chelseyartwork/
 ├── app/
-│   ├── page.tsx                    ← HOME (minimal)
-│   ├── selected-works/page.tsx     ← SELECTED WORKS (uses /content/artworks)
-│   ├── studio/page.tsx             ← IN THE STUDIO (uses /content/studio)
-│   ├── texts/page.tsx              ← TEXTS / PRESS (uses /content/texts)
-│   ├── private/
-│   │   ├── page.tsx                ← Private collection (authenticated)
-│   │   └── gate/page.tsx           ← Password gate
-│   ├── api/private/
-│   │   ├── auth/route.ts           ← Validate password, set cookie
-│   │   └── logout/route.ts         ← Clear cookie
+│   ├── page.tsx                    ← HOME (minimal hero)
+│   ├── bio/page.tsx                ← BIO (artist statement)
+│   ├── selected-works/page.tsx     ← PORTFOLIO (artwork grid)
+│   ├── exhibitions/page.tsx        ← EXHIBITIONS
+│   ├── contact/page.tsx            ← CONTACT
 │   ├── layout.tsx
-│   └── globals.css
+│   └── globals.css                 ← Architectural theme CSS
 ├── components/
-│   ├── Navigation.tsx              ← Fixed nav (5 items)
-│   └── ArtworkModal.tsx            ← Deep zoom viewer
+│   ├── Navigation.tsx              ← Responsive nav (sidebar + hamburger)
+│   └── ArtworkModal.tsx            ← Deep zoom viewer with Inquire
 ├── content/
-│   ├── artworks.ts                 ← Single source: all artworks
-│   ├── studio.ts                   ← Single source: all studio images
-│   └── texts.ts                    ← Single source: statements + publications
+│   └── artworks.ts                 ← Single source: all artworks
 ├── public/images/
-│   ├── hero/hero.jpg
-│   ├── artworks/asemic-writing/, bio-abstract/, specters/, archive/
-│   ├── studio/
-│   └── private/
-├── middleware.ts                   ← Auth middleware for /private
-├── .env.local                      ← Password (git-ignored)
-├── .env.example                    ← Template
-├── CONTENT_STRUCTURE.md            ← Complete setup guide
-├── IMAGE_PLACEMENT_GUIDE.md        ← How to add images
+│   └── artworks/                   ← All artwork images
+├── .gitignore                      ← Excludes node_modules, .next
 └── package.json
 ```
 
 ---
 
-## Environment Variables
+## Deployment
 
-### .env.local (Required)
-```
-PRIVATE_VIEW_PASSWORD=chelsey
-```
+### GitHub Repository
+- https://github.com/thepig365/chelseyartwork
 
-Do NOT commit to git. This file is in `.gitignore`.
-
-### On Deployment
-**Vercel**: Set `PRIVATE_VIEW_PASSWORD` in Project Settings → Environment Variables
-
-**Self-Hosted**: Export before starting:
-```bash
-export PRIVATE_VIEW_PASSWORD=your_password
-npm start
-```
+### Vercel
+- Connect GitHub repo to Vercel
+- Auto-deploys on push to `main` branch
 
 ---
 
 ## Key Features
 
-✨ **Authority-First Design**
-- Clean, minimal aesthetic
-- Large whitespace
-- Cold tone (expensive look)
-- No commercial noise
+✨ **Architectural Theme**
+- Warm background (#F4F3F0)
+- Courier New monospace typography
+- Fixed left sidebar navigation
+- Professional gallery aesthetic
 
-🔐 **Secure Private View**
-- Server-side authentication
-- Password validated against env var
-- Images not exposed to unauthenticated clients
-- HttpOnly cookies (client JS cannot access)
-
-📐 **Single Source of Truth**
-- All content in `/content/`
-- Pages are render-only (no hardcoded data)
-- Easy to manage and update
+📱 **Fully Responsive**
+- Desktop: 220px fixed sidebar
+- Mobile: Hamburger menu with slide-down overlay
+- Touch-friendly interactions
 
 🎨 **Deep Zoom Gallery**
 - Modal viewer with full zoom/pan controls
-- Supports up to 4x magnification
-- Smooth interactions
-- Metadata always visible
+- Up to 4x magnification
+- Inquire button links to Contact
 
-📱 **Responsive**
-- Mobile, tablet, desktop
-- Flexible grid layouts
-- Touch-friendly on mobile
+📐 **Clean Architecture**
+- All artwork data in `/content/artworks.ts`
+- Pages are render-only
+- Easy to maintain and update
 
 ⚡ **Production Ready**
 - Builds without errors
-- No console warnings (except deprecated middleware warning)
-- Hot reload in development
-- Optimized assets
+- Optimized for Vercel deployment
+- Git repository cleaned (.gitignore configured)
 
 ---
 
-## Next Steps
+## Contact
 
-1. **Add Your Images**:
-   - Replace placeholder images in `/public/images/`
-   - Use exact naming: `YYYY_category_NN.jpg`
-   - See IMAGE_PLACEMENT_GUIDE.md
-
-2. **Update Content**:
-   - Edit `/content/artworks.ts` for your works
-   - Edit `/content/studio.ts` for process photos
-   - Edit `/content/texts.ts` for your statement
-
-3. **Customize** (Optional):
-   - Change hero image path in page.tsx
-   - Adjust colors in `app/globals.css`
-   - Modify spacing in Tailwind config
-   - Change password in `.env.local`
-
-4. **Deploy**:
-   - Vercel: Connect git repo, set env vars
-   - Self-hosted: `npm run build` + `npm start` + set env vars
-
----
-
-## Support
-
-See these files for detailed guidance:
-- **CONTENT_STRUCTURE.md** — Complete architecture & setup
-- **IMAGE_PLACEMENT_GUIDE.md** — Step-by-step image instructions
-- **Code comments** — Throughout components and pages
+Studio Enquiries: studio@chelseyartwork.com
 "
